@@ -5,10 +5,12 @@
 
 </head>
 <body>
-<label for="playerName">Enter an NHL player's full name:</label>
-<input type="text" id="playerName" name="playerName" placeholder="Sidney Crosby"><br>
-
-
+<div id="names">
+    <label for="playerName0">Enter an NHL player's full name:</label>
+    <input type="text" id="playerName0" name="playerName0" placeholder="Sidney Crosby"><br>
+    <label for="playerName1">Enter another name:</label>
+    <input type="text" id="playerName1" name="playerName1" placeholder="Connor McDavid"><br>
+</div>
 <h3>Stats to compare</h3>
 <form>
     <label for="games">Games</label>
@@ -29,10 +31,19 @@
     <input type="checkbox" id="shots" name="shots"><br>
 </form>
 
-<button id="submit" onclick=searchPlayer()>Compare players</button>
+<button id="submit" onclick=calculatePlayers()>Compare players</button>
 
-<div id="results">
-    <h3> Results </h3>
+<!--Add player name, team and photo-->
+<!--Add color comparison (green if better)-->
+<div id="playerHeader0">
+    <h3>Player 0</h3>
+</div>
+<div id="playerStats0">
+</div>
+<div id="playerHeader1">
+    <h3>Player 1</h3>
+</div>
+<div id="playerStats1">
 </div>
 </body>
 </html>
