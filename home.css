@@ -1,0 +1,44 @@
+body {
+    background-image: url("images/bg.jpg");
+    background-size: cover;
+}
+
+#categories {
+    margin: auto;
+    display: inline;
+    padding: 0 10% 0 10%;
+}
+
+.playerBox {
+    display: inline;
+    border: 2px solid black;
+    background-color: lightgray;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#playerStats0 {
+    margin-left: 20%;
+    /*margin-top: 20%;*/
+    float: left;
+
+
+
+
+}
+
+#playerStats1 {
+    /*padding-right: 20%;*/
+    float: right;
+    display: inline;
+
+}
+
+h3 {
+    /*padding-left: 200px;*/
+}
+
+img {
+    border-radius: 50%;
+    padding: 20px;
+}

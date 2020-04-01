@@ -1,7 +1,10 @@
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="home.css" type="text/css">
+    <link rel="shortcut icon" href="images/favicon.ico" />
     <script src="home.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>NHL Player Comparison</title>
 
 </head>
 <body>
@@ -11,39 +14,40 @@
     <label for="playerName1">Enter another name:</label>
     <input type="text" id="playerName1" name="playerName1" placeholder="Connor McDavid"><br>
 </div>
-<h3>Stats to compare</h3>
-<form>
-    <label for="games">Games</label>
-    <input type="checkbox" id="games" name="games" checked><br>
-    <label for="points">Points</label>
-    <input type="checkbox" id="points" name="points" checked><br>
-    <label for="goals">Goals</label>
-    <input type="checkbox" id="goals" name="goals" checked><br>
-    <label for="assists">Assists</label>
-    <input type="checkbox" id="assists" name="assists" checked><br>
-    <label for="plusMinus">+/-</label>
-    <input type="checkbox" id="plusMinus" name="plusMinus" checked><br>
-    <label for="powerPlayPoints">Power Play Points</label>
-    <input type="checkbox" id="powerPlayPoints" name="powerPlayPoints"><br>
-    <label for="powerPlayGoals">Power Play Goals</label>
-    <input type="checkbox" id="powerPlayGoals" name="powerPlayGoals"><br>
-    <label for="shots">Shots</label>
-    <input type="checkbox" id="shots" name="shots"><br>
-</form>
 
+
+<div id ="button">
 <button id="submit" onclick=calculatePlayers()>Compare players</button>
-
+</div>
 <!--Add player name, team and photo-->
 <!--Add color comparison (green if better)-->
-<div id="playerHeader0">
-    <h3>Player 0</h3>
+<!--Maybe add abbreviations (EDM, VAN)-->
+
+<div id="playerStats0" class="playerBox" >
 </div>
-<div id="playerStats0">
+<div id="categories">
+    <h3>Stats to compare</h3>
+    <form>
+        <label for="games">Games</label>
+        <input type="checkbox" id="games" name="games" checked><br>
+        <label for="points">Points</label>
+        <input type="checkbox" id="points" name="points" checked><br>
+        <label for="goals">Goals</label>
+        <input type="checkbox" id="goals" name="goals" checked><br>
+        <label for="assists">Assists</label>
+        <input type="checkbox" id="assists" name="assists" checked><br>
+        <label for="plusMinus">+/-</label>
+        <input type="checkbox" id="plusMinus" name="plusMinus" checked><br>
+        <label for="powerPlayPoints">Power Play Points</label>
+        <input type="checkbox" id="powerPlayPoints" name="powerPlayPoints"><br>
+        <label for="powerPlayGoals">Power Play Goals</label>
+        <input type="checkbox" id="powerPlayGoals" name="powerPlayGoals"><br>
+        <label for="shots">Shots</label>
+        <input type="checkbox" id="shots" name="shots"><br>
+    </form>
 </div>
-<div id="playerHeader1">
-    <h3>Player 1</h3>
-</div>
-<div id="playerStats1">
+
+<div id="playerStats1" class="playerBox">
 </div>
 </body>
 </html>

@@ -3,10 +3,9 @@ TODOS:
 Either add goalie comparison or alert if player position is G (maybe use 'if any values are undefined, throw error'
 Change css color of greater stat to green (can prob be done only in css)
 Fixes throughout home.js
-
-
  */
 
+let officialName;
 
 function calculatePlayers() {
     let playerName0 = $("#playerName0").val();
@@ -69,6 +68,7 @@ function searchTeams(playerName, numPlayer) {
             for (let j = 0; j < data.roster.length; j++) {
                 let player = data.roster[j].person;
                 if (player.fullName.toLowerCase() === playerName.toLowerCase()) {
+                    officialName = player.fullName;
                     console.log(player.id);
                     isFound = true;
                     getPlayerStats(player.id, numPlayer);
@@ -83,6 +83,7 @@ function getPlayerStats(playerId, numPlayer) {
     // console.log(playerId);
     let results = "";
     let playerLink = 'https://statsapi.web.nhl.com/api/v1/people/' + playerId + '/stats?stats=statsSingleSeason&season=20192020'
+    let playerPhoto = 'https://nhl.bamcontent.com/images/headshots/current/168x168/'+playerId+'.jpg'
     let printStats = {
         "games": "Games",
         "points": "Points",
@@ -106,6 +107,11 @@ function getPlayerStats(playerId, numPlayer) {
             }
         }
         let playerStats = data.stats[0].splits[0].stat;
+
+        //Player header
+        results += '<h3>'+ officialName + '</h3> <br> ' +
+            '<img src="' + playerPhoto + '"' + '<br><br>';
+
         for (let i = 0; i < checkedStats.length; i++) {
 
             let curStat = checkedStats[i]
@@ -114,7 +120,7 @@ function getPlayerStats(playerId, numPlayer) {
             console.log(curStat);
             addString = curStat + ": " + playerStats[curStat];
             results += addString + '<br>';
-
+             // + addString + '<br>';
             let divNum = "#playerStats" + numPlayer;
             $(divNum).html(results);
 
@@ -163,8 +169,6 @@ function getPlayerStats(playerId, numPlayer) {
 //         }]
 //     }]
 // }
-
-
 
 
 
