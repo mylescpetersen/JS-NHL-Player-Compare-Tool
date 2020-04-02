@@ -26,6 +26,7 @@ function calculatePlayers() {
             getPlayerStats(playerId1);
         }
     }
+    compareStats();
 }
 
 function isEmpty(playerName) {
@@ -90,13 +91,15 @@ function getPlayerStats(playerId, numPlayer) {
         "goals": "Goals",
         "assists": "Assists",
         "plusMinus": "Plus minus (+/-)",
-        "powePlayPoints": "Power Play Points",
+        "powerPlayPoints": "Power Play Points",
         "powerPlayGoals": "Power Play Goals",
         "shots": "Shots",
     }
     $.get(playerLink, function (data) {
 
 
+
+        // duplicate code
         let possibleStats = ["games", "points", "goals", "assists", "plusMinus", "powerPlayPoints", "powerPlayGoals", "shots"];
         let checkedStats = [];
 
@@ -118,7 +121,12 @@ function getPlayerStats(playerId, numPlayer) {
 
             // TODO FIX printStats.curStat
             console.log(curStat);
-            addString = curStat + ": " + playerStats[curStat];
+
+            // addString = curStat + ": " + playerStats[curStat];
+
+            addString =  "<b>" + printStats[curStat] + ": </b>" + '<p id="' + curStat + numPlayer +'">' +
+                playerStats[curStat] + '</p>';
+
             results += addString + '<br>';
              // + addString + '<br>';
             let divNum = "#playerStats" + numPlayer;
@@ -126,7 +134,36 @@ function getPlayerStats(playerId, numPlayer) {
 
         }
     });
+
 }
+
+// Not implemented
+function compareStats() {
+    let possibleStats = ["games", "points", "goals", "assists", "plusMinus", "powerPlayPoints", "powerPlayGoals", "shots"];
+    let checkedStats = [];
+
+    for (let i = 0; i < possibleStats.length; i++) {
+        let s = possibleStats[i];
+        if (document.getElementById(s).checked) {
+            checkedStats.push(s);
+        }
+    }
+
+    for (let i = 0; i < checkedStats.length; i++) {
+        let curStat = checkedStats[i];
+        // console.log(curStat);
+
+        let curDiv0 = curStat + "0";
+        let curDiv1 = curStat + "1";
+        let curStatVal0 = document.getElementById(curDiv0).textContent;
+        let curStatVal1 = document.getElementById(curDiv1).textContent;
+        console.log(curStatVal0);
+    }
+
+
+}
+
+
 
 
 // let test = {

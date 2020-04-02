@@ -4,9 +4,12 @@ body {
 }
 
 #categories {
-    margin: auto;
+    /*margin: auto;*/
+    margin: 0 10px 0 10px;
     display: inline;
     padding: 0 10% 0 10%;
+    /*background-color: lightgray;*/
+    /*border: 2px solid black;*/
 }
 
 .playerBox {
@@ -38,7 +41,14 @@ h3 {
     /*padding-left: 200px;*/
 }
 
+/*border*/
 img {
     border-radius: 50%;
     padding: 20px;
+    border-width: 2px;
+    border-color: black;
+}
+
+.goals {
+    color: #23b01a;
 }
