@@ -112,7 +112,7 @@ function getPlayerStats(playerId, numPlayer) {
         let playerStats = data.stats[0].splits[0].stat;
 
         //Player header
-        results += '<h3>'+ officialName + '</h3> <br> ' +
+        results += '<h3><u>'+ officialName + '</h3></u><br> ' +
             '<img src="' + playerPhoto + '"' + '<br><br>';
 
         for (let i = 0; i < checkedStats.length; i++) {

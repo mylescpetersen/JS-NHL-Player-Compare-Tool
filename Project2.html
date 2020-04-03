@@ -5,20 +5,22 @@
     <script src="home.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>NHL Player Comparison</title>
+    <link rel="stylesheet" href="../../bruh/home.css">
 
 </head>
 <body>
 <div id="names">
-    <label for="playerName0">Enter an NHL player's full name:</label>
-    <input type="text" id="playerName0" name="playerName0" placeholder="Sidney Crosby"><br>
-    <label for="playerName1">Enter another name:</label>
-    <input type="text" id="playerName1" name="playerName1" placeholder="Connor McDavid"><br>
+    <label for="playerName0"><b>Enter an NHL player's full name:</b></label><br>
+    <input type="text" id="playerName0" name="playerName0" placeholder="Sidney Crosby"><br><br>
+    <label for="playerName1"><b>Enter another name:</b></label><br>
+    <input type="text" id="playerName1" name="playerName1" placeholder="Connor McDavid"><br><br>
+    <div id ="button">
+        <button id="submit" onclick=calculatePlayers()>Compare players</button>
+    </div>
 </div>
 
 
-<div id ="button">
-<button id="submit" onclick=calculatePlayers()>Compare players</button>
-</div>
+
 <!--Add player name, team and photo-->
 <!--Add color comparison (green if better)-->
 <!--Maybe add abbreviations (EDM, VAN)-->
