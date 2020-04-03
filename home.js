@@ -5,7 +5,21 @@ Change css color of greater stat to green (can prob be done only in css)
 Fixes throughout home.js
  */
 
-let officialName;
+let officialName0;
+let officialName1;
+let playerId0;
+let playerId1;
+
+let player0TeamNum;
+let player1TeamNum;
+let player0Abbrev;
+let player1Abbrev;
+
+let playerLink0 = 'https://statsapi.web.nhl.com/api/v1/people/' + playerId0;
+let playerLink1 = 'https://statsapi.web.nhl.com/api/v1/people/' + playerId0;
+
+
+// let goalie = false;
 
 function calculatePlayers() {
     let playerName0 = $("#playerName0").val();
@@ -26,7 +40,7 @@ function calculatePlayers() {
             getPlayerStats(playerId1);
         }
     }
-    compareStats();
+    // compareStats();
 }
 
 function isEmpty(playerName) {
@@ -68,8 +82,30 @@ function searchTeams(playerName, numPlayer) {
             // console.log(data);
             for (let j = 0; j < data.roster.length; j++) {
                 let player = data.roster[j].person;
+
                 if (player.fullName.toLowerCase() === playerName.toLowerCase()) {
-                    officialName = player.fullName;
+                    // console.log(player.people[1].code);
+                    // if (player.people[1].code === "G") {
+                    //     alert("Goalie entered. Please enter a skater (Forward / Defence)");
+                    //     return
+                    // }
+                    let tmpLink = 'https://statsapi.web.nhl.com'
+                    if (numPlayer === 0) {
+                        officialName0 = player.fullName;
+                        playerId0 = player.id;
+                        player0TeamNum = i;
+                        playerLink0 = tmpLink + player.link;
+                        console.log(playerLink0);
+
+                    }
+                    else {
+                        officialName1 = player.fullName;
+                        playerId1 = player.id;
+                        player1TeamNum = i;
+                        playerLink1 = tmpLink + player.link;
+                    }
+
+
                     console.log(player.id);
                     isFound = true;
                     getPlayerStats(player.id, numPlayer);
@@ -83,7 +119,7 @@ function searchTeams(playerName, numPlayer) {
 function getPlayerStats(playerId, numPlayer) {
     // console.log(playerId);
     let results = "";
-    let playerLink = 'https://statsapi.web.nhl.com/api/v1/people/' + playerId + '/stats?stats=statsSingleSeason&season=20192020'
+    let playerStatsLink = 'https://statsapi.web.nhl.com/api/v1/people/' + playerId + '/stats?stats=statsSingleSeason&season=20192020'
     let playerPhoto = 'https://nhl.bamcontent.com/images/headshots/current/168x168/'+playerId+'.jpg'
     let printStats = {
         "games": "Games",
@@ -95,7 +131,7 @@ function getPlayerStats(playerId, numPlayer) {
         "powerPlayGoals": "Power Play Goals",
         "shots": "Shots",
     }
-    $.get(playerLink, function (data) {
+    $.get(playerStatsLink, function (data) {
 
 
 
@@ -112,20 +148,66 @@ function getPlayerStats(playerId, numPlayer) {
         let playerStats = data.stats[0].splits[0].stat;
 
         //Player header
-        results += '<h3><u>'+ officialName + '</h3></u><br> ' +
-            '<img src="' + playerPhoto + '"' + '<br><br>';
+
+        if (numPlayer === 0) {
+            $.get(playerLink0, function(player0Info) {
+                player0Abbrev = player0Info.people[0].primaryPosition.code;
+                // console.log(player0Info.people[0].primaryPosition.code);
+                if (isGoalie(player0Abbrev)) {
+                    alert("Goalie entered. Please enter a skater (Forward / Defence).");
+                    return;
+                }
+            });
+
+
+
+            results += '<h3><u>'+ officialName0+ '</h3></u><br> ' +
+                '<img src="' + playerPhoto + '"' + '<br><br>';
+        }
+        else {
+            $.get(playerLink1, function(player1Info) {
+                player1Abbrev = player1Info.people[0].primaryPosition.code;
+                // console.log(player0Info.people[0].primaryPosition.code);
+                if (isGoalie(player1Abbrev)) {
+                    alert("Goalie entered. Please enter a skater (Forward / Defence).");
+                }
+            });
+
+            // if (goalie) {
+            //     return;
+            // }
+            results += '<h3><u>'+ officialName1 + '</h3></u><br> ' +
+                '<img src="' + playerPhoto + '"' + '<br><br>';
+        }
+
+        // Fix player still appearing
+        function isGoalie(playerAbbrev) {
+            if (playerAbbrev === "G") {
+                // goalie = true;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
 
         for (let i = 0; i < checkedStats.length; i++) {
 
             let curStat = checkedStats[i]
 
             // TODO FIX printStats.curStat
-            console.log(curStat);
+            // console.log(curStat);
 
             // addString = curStat + ": " + playerStats[curStat];
+            let playerCurStat = playerStats[curStat];
+            if (playerCurStat === undefined) {
+                playerCurStat = "N/A"
+            }
+
 
             addString =  "<b>" + printStats[curStat] + ": </b>" + '<p id="' + curStat + numPlayer +'">' +
-                playerStats[curStat] + '</p>';
+                playerCurStat + '</p>';
 
             results += addString + '<br>';
              // + addString + '<br>';
