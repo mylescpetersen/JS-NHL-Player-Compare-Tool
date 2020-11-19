@@ -120,7 +120,8 @@ function getPlayerStats(playerId, numPlayer) {
     // console.log(playerId);
     let results = "";
     let playerStatsLink = 'https://statsapi.web.nhl.com/api/v1/people/' + playerId + '/stats?stats=statsSingleSeason&season=20192020'
-    let playerPhoto = 'https://nhl.bamcontent.com/images/headshots/current/168x168/'+playerId+'.jpg'
+    //let playerPhoto = 'http://nhl.bamcontent.com/images/headshots/current/168x168/'+playerId+'.jpg'
+	let playerPhoto = 'https://cms.nhl.bamgrind.com/images/headshots/current/168x168'+playerId+'.jpg'
     let printStats = {
         "games": "Games",
         "points": "Points",
